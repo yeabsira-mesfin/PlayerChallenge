@@ -1,9 +1,10 @@
 import { useState,useRef } from "react";
 export default function Player() {
  const playerName = useRef();
- const [name,setName] = useState();
+ const [name,setName] = useState(null);
  function handleClick(){
   setName(playerName.current.value);
+  playerName.current.value = '';
  }
  let buttonCaption = 'Set Name';
  if(name){
@@ -11,7 +12,7 @@ export default function Player() {
  }
   return (
     <section id="player">
-      <h2>Welcome {name ?? 'unknown entity'}</h2>
+      <h2>Welcome { name ?? 'unknown entity'}</h2>
       <p>
         <input type="text" ref={playerName}/>
         <button onClick={handleClick}>{buttonCaption}</button>
