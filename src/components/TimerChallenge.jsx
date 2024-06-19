@@ -1,5 +1,5 @@
 import React, { useState,useRef } from "react";
-
+import ResultModal from "./ResultModal";
 const TimerChallenge = ({ title, targetTime }) => {
   const [timerStarted, setTimerStarted] = useState(false);
   const [timerExp, setTimeExp] = useState(false);
@@ -15,9 +15,11 @@ const TimerChallenge = ({ title, targetTime }) => {
     clearTimeout(timer.current);
   }
   return (
+    <>
+    {timerExp && <ResultModal result="lost" targetTime={targetTime}/>}
     <section className="challenge">
       <h2>{title}</h2>
-      {timerExp && <p>You lost!</p>}
+      
       <p className="challenge-time">
         {targetTime} second{targetTime > 1 ? "s" : ""}
       </p>
@@ -26,6 +28,7 @@ const TimerChallenge = ({ title, targetTime }) => {
       </p>
       <p className={timerStarted? 'active':''}>{timerStarted? 'Time is runnig':'Timer inactive'}</p>
     </section>
+    </>
   );
 };
 
